@@ -16,11 +16,17 @@ const port = process.env.PORT || 3000;
 // Middlewares
 app.use(cors());
 app.use(helmet());
-app.use(morgan("combined"));
+app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(fileUpload());
+
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
 
 // Configurar EJS como motor de plantillas
 app.set("views", path.join(__dirname, "views"));

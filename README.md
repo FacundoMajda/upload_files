@@ -11,18 +11,18 @@ base de datos MySQL para el seguimiento y almacenamiento de información
 relacionada con las imágenes, incluida la compatibilidad con la librería expressfileupload
 para la carga de archivos.
 
-
-
 Instalaciones necesarias:
 
 Dentro del directorio del proyecto ejecutar:
+
 ```bash
 npm install
 ```
 
->> ## Requiere de una base de datos MySQL.
+> > ## Requiere de una base de datos MySQL.
 
 Variables de entorno:
+
 ```bash
 PORT=
 DB_NAME=
@@ -31,9 +31,14 @@ DB_PASSWORD=
 DB_HOST=
 DB_PORT=
 DB_DIALECT=
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
 ```
 
 Configurar en el package.json
+
 ```bash
  "scripts": {
     "dev" : "nodemon app.js"
@@ -41,6 +46,8 @@ Configurar en el package.json
 ```
 
 Y para ejecutar el proyecto en modo desarrollo:
-```bash
+
+````bash
 npm run dev
 ```# upload_files
+````
