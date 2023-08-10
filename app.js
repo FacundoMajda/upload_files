@@ -16,7 +16,6 @@ const port = process.env.PORT || 4000;
 //variables de entorno
 dotenv.config({ path: ".env" });
 
-// Se importa la instancia de conexión a la base de datos
 const { sequelize } = require("./db.js");
 
 // Configurar EJS como motor de plantillas
@@ -41,8 +40,7 @@ app.use(
 // default options
 app.use(
   fileUpload({
-    useTempFiles: true,
-    tempFileDir: "/tmp/",
+    useTempFiles: false,
   })
 );
 
@@ -54,7 +52,7 @@ sequelize
   })
   .catch((error) => console.log("Error al conectar a base de datos", error));
 
-// app.use("/", require("./routes/galleries.routes"));
+app.use("/", require("./routes/file.routes"));
 
 app.listen(port, () => {
   console.log(`Servidor escuchando en el puerto ${port}`);

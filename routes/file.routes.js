@@ -2,14 +2,21 @@ const { Router } = require("express");
 
 const {
   indexView,
+  createView,
   index,
   show,
   update,
   store,
   destroy,
-} = require("ruta del controlador aqui");
-router.get("/", indexView);
+} = require("../controllers/galeria.controllers");
 
+const router = Router();
+
+//Vistas
+router.get("/", indexView);
+router.get("/create", createView);
+
+// API CRUD
 router.get("/api", index);
 router.get("/api/:id/show", show);
 router.post("/api", store);
