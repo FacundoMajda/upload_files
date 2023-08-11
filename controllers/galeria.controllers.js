@@ -4,7 +4,7 @@ const Image = require("../models/image.model");
 
 //VISTAS
 const indexView = (_req, res) => {
-  res.render("galleries/index", { mensaje: "" });
+  res.render("galleries/index");
 };
 
 const createView = (_req, res) => {
