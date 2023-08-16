@@ -22,7 +22,6 @@ const Image = sequelize.define(
   }
 );
 
-console.log("Image");
 Image.sync();
 
 module.exports = Image;

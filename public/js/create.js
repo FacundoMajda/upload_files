@@ -1,11 +1,14 @@
 const uploadForm = document.querySelector("#uploadForm");
+const btnSubmit = document.querySelector("#btnSubmit");
+const spinner = document.querySelector("#spinner");
 const image = document.querySelector("#image");
 const validationErrors = document.querySelector("#validationErrors");
 
 uploadForm.addEventListener("submit", async function (e) {
   e.preventDefault();
 
-  console.log(image.files[0]);
+  // btnSubmit.classList.add("disabled");
+  // spinner.classList.remove("visually-hidden");
 
   const fd = new FormData();
   fd.append("image", image.files[0]);
@@ -22,13 +25,19 @@ uploadForm.addEventListener("submit", async function (e) {
       validationErrors.innerHTML = `
                 <small class="text-danger">${data.mensaje}</small>
             `;
+      btnSubmit.classList.remove("disabled");
+      spinner.classList.add("visually-hidden");
+
       return;
     }
 
     if (data.mensaje) {
+      btnSubmit.classList.remove("disabled");
+      spinner.classList.add("visually-hidden");
       validationErrors.innerHTML = `
                 <small class="text-danger">${data.mensaje}</small>
             `;
+
       return;
     }
 
