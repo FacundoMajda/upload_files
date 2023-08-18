@@ -1,0 +1,30 @@
+<%- include('../partials/header.ejs') ;%>
+
+
+
+<body class="h-100 d-flex flex-column">
+    <%- include('../partials/nav'); %>
+    <div id="alertBanner" class="alert alert-warning alert-dismissible fade" role="alert">
+        <span id="bannerMessage"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>      
+    <div class="container-fluid py-5 px-md-5 col">
+        <header class="d-flex align-items-center justify-content-between">
+            <a class="btn btn-primary" href="/crear">Agregar Nueva Imagen</a>
+        </header>
+        <main class="col h-100">
+            <h1>IMAGENES ALOJADAS DE FORMA LOCAL:</h1>
+            <section class="row mt-2" id="galeriaLocal">                
+                
+            </section>
+            <h2>IMAGENES ALOJADAS EN CLOUDINARY:</h2>
+            <section class="row mt-2 mb-2" id="galeriaRemota">                
+                
+            </section>
+        </main>
+    </div>
+    <%- include('../partials/footer'); %>
+    <script src="/js/index.js"></script>
+</body>
+
+</html>

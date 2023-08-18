@@ -1,53 +1,46 @@
-# GALERÍA DE IMÁGENES CON CONEXIÓN A CLOUDINARY
+project-root/
+├── src/
+│   ├── controllers/
+│   │   ├── imagelocal.controller.js
+│   │   ├── imagecloud.controller.js
+│   ├── models/
+│   │   ├── imagelocal.model.js
+│   │   ├── imagecloud.model.js
+│   ├── routes/
+│   │   ├── file.routes.js
+│   │   ├── imagelocal.routes.js
+│   │   ├── imagecloud.routes.js
+│   ├── public/
+│   │   ├── stylesheets/
+│   │   │   ├── style.css
+│   │   ├── js/
+│   │   │   ├── uploadlocal.js
+│   │   │   ├── uploadcloud.js
+│   │   │   ├── config.js
+│   ├── views/
+│   │   ├── galeria/
+│   │   │   ├── index.ejs
+│   │   │   ├── crear.ejs
+│   │   ├── partials/
+│   │   │   ├── header.ejs
+│   │   │   ├── nav.ejs
+│   │   │   ├── footer.ejs
+│   ├── files/
+│   │   ├── tmp/
+├── app.js
+├── db.js
+├── .env
+└── ...
 
-## Trabajo Práctico de Desarrollo e Investigación
+Subir imagen local:
 
-El objetivo de este trabajo es investigar, diseñar y desarrollar un servidor
-utilizando Node.js y Express, junto con el motor de plantillas EJS, para crear un sistema
-de gestión de imágenes con operaciones CRUD (Crear, Leer, Actualizar y Borrar).
-Además, se busca integrar el servicio Cloudinary para el almacenamiento y
-manipulación de imágenes. El proyecto también involucra la implementación de una
-base de datos MySQL para el seguimiento y almacenamiento de información
-relacionada con las imágenes, incluida la compatibilidad con la librería expressfileupload
-para la carga de archivos.
+Ruta: /upload/local
+Controlador: imagelocal.controller.js
+Subir imagen a Cloudinary:
 
-Instalaciones necesarias:
+Ruta: /upload/cloudinary
+Controlador: imagecloud.controller.js
+Ver galería de imágenes:
 
-Dentro del directorio del proyecto ejecutar:
-
-```bash
-npm install
-```
-
-> > ## Requiere de una base de datos MySQL.
-
-Variables de entorno:
-
-```bash
-PORT=
-DB_NAME=
-DB_USER=
-DB_PASSWORD=
-DB_HOST=
-DB_PORT=
-DB_DIALECT=
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
-
-```
-
-Configurar en el package.json
-
-```bash
- "scripts": {
-    "dev" : "nodemon app.js"
-  }
-```
-
-Y para ejecutar el proyecto en modo desarrollo:
-
-````bash
-npm run dev
-```# upload_files
-````
+Ruta: /gallery
+Controlador: gallery.controller.js

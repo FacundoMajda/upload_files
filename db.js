@@ -1,3 +1,5 @@
+// @ts-check
+
 // Se importan las clases de la librería
 const { Sequelize, Model, DataTypes } = require("sequelize");
 

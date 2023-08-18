@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "El objetivo de este trabajo es investigar, diseñar y desarrollar un servidor\r utilizando Node.js y Express, junto con el motor de plantillas EJS, para crear un sistema\r de gestión de imágenes con operaciones CRUD (Crear, Leer, Actualizar y Borrar).\r Además, se busca integrar el servicio Cloudinary para el almacenamiento y\r manipulación de imágenes. El proyecto también involucra la implementación de una\r base de datos MySQL para el seguimiento y almacenamiento de información\r relacionada con las imágenes, incluida la compatibilidad con la librería expressfileupload\r para la carga de archivos.",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js"

@@ -1,54 +1,49 @@
-require("dotenv").config();
-const express = require("express");
-const path = require("path");
-const fileUpload = require("express-fileupload");
-const cloudinary = require("cloudinary").v2;
-const dotenv = require("dotenv");
-const cors = require("cors");
-const helmet = require("helmet");
-const morgan = require("morgan");
-// const ejs = require("ejs");
-const mysql = require("mysql2");
-const { Sequelize, DataTypes } = require("sequelize");
-const createError = require("http-errors");
+//@ts-check
+import dotenv from "dotenv";
+dotenv.config();
 
-//asd
-const signuploadRouter = require("./routes/signupload");
-const signuploadformRouter = require("./routes/signuploadform");
+import express from "express";
+import path from "path";
+import fileUpload from "express-fileupload";
+import cloudinary from "cloudinary";
+import cors from "cors";
+import helmet from "helmet";
+import morgan from "morgan";
+import ejs from "ejs";
+import createError from "http-errors";
+import { sequelize } from "./db.js";
+
+import routerLocal from "./src/routes/imagelocal.routes.js";
+import routerCloud from "./src/routes/imagecloud.routes.js";
+import views from "./src/routes/galeria.routes.js";
 
 const app = express();
 const port = process.env.PORT || 4000;
 
-const { sequelize } = require("./db.js");
-
-// upload signing API
-app.use("/api/signupload", signuploadRouter);
-app.use("/api/signuploadform", signuploadformRouter);
+// Routes setup
+app.use("/upload/local", routerLocal);
+app.use("/upload/cloudinary", routerCloud);
+app.use("/galeria", views);
 
 // static files
 app.use(express.static("public"));
-// // Configurar EJS como motor de plantillas
-// app.set("views", path.join(__dirname, "views"));
-// app.set("view engine", "ejs");
+
+// Configurar el motor de plantillas EJS
+app.set("views", path.join(__dirname, "views")); // Establecer la ubicación de las vistas
+app.set("view engine", "ejs"); // Usar EJS como motor de plantillas
 
 // Middlewares
 app.use(cors());
-app.use(helmet());
+
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "public")));
+
+// fileupload & default options
 app.use(fileUpload());
-// default options
 app.use(
   fileUpload({
-    useTempFiles: false,
-  })
-);
-
-app.use(
-  helmet({
-    contentSecurityPolicy: false,
+    useTempFiles: true,
   })
 );
 
@@ -56,8 +51,6 @@ app.use(
 app.use(function (req, res, next) {
   next(createError(404));
 });
-
-// app.use("/", require("./routes/file.routes"));
 
 // error handler
 app.use(function (err, req, res, next) {
@@ -72,11 +65,10 @@ app.use(function (err, req, res, next) {
 
 app.listen(port, async () => {
   try {
-    sequelize.authenticate().then(() => {
-      console.log("Conexión a base de datos exitosa");
-    });
-  } catch {
-    (error) => console.log("Error al conectar a base de datos", error);
+    await sequelize.authenticate();
+    console.log("Conexión a base de datos exitosa");
+  } catch (error) {
+    console.log("Error al conectar a base de datos", error);
   }
   console.log(`Servidor escuchando en el puerto ${port}`);
 });
