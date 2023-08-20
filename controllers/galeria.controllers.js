@@ -1,10 +1,10 @@
 //VISTAS
 const indexView = (_req, res) => {
-  res.render("galeria/index", { mensaje: "" });
+  res.render("/", { mensaje: "" });
 };
 
 const createView = (_req, res) => {
-  res.render("galeria/crear");
+  res.render("/crear");
 };
 
 export { indexView, createView };

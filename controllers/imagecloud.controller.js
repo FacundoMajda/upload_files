@@ -1,7 +1,9 @@
+//@ts-check
+
 // Importamos las dependencias necesarias
 import path from "path";
 import { join } from "path";
-import { myconfig } from "../public/js/config.js";
+import myconfig from "../public/js/config.js";
 import ImageCloud from "../models/imagecloud.model.js";
 import { unlink } from "fs";
 import fileDirName from "../public/js/dirname.js";

@@ -1,4 +1,4 @@
-import { DataTypes, sequelize } from "../../db";
+import { sequelize, DataTypes } from "../db.js";
 
 const ImageLocal = sequelize.define(
   "ImageLocal",
@@ -15,7 +15,9 @@ const ImageLocal = sequelize.define(
   }
 );
 
+// Sincronizamos el modelo con la base de datos
 console.log("ImageLocal");
 ImageLocal.sync();
 
+// Exportamos el modelo para su uso en otros archivos
 export default ImageLocal;

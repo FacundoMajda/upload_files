@@ -1,7 +1,9 @@
 //@ts-check
-import dotenv from "dotenv";
-dotenv.config();
 
+import "dotenv/config";
+import { join } from "path";
+import { unlink } from "fs";
+import fileDirName from "./public/js/dirname.js";
 import express from "express";
 import path from "path";
 import fileUpload from "express-fileupload";
@@ -10,34 +12,41 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import ejs from "ejs";
-import createError from "http-errors";
 import { sequelize } from "./db.js";
 
-import routerLocal from "./src/routes/imagelocal.routes.js";
-import routerCloud from "./src/routes/imagecloud.routes.js";
-import views from "./src/routes/galeria.routes.js";
+import routerLocal from "./routes/imagelocal.routes.js";
+import routerCloud from "./routes/imagecloud.routes.js";
+import views from "./routes/galeria.routes.js";
 
 const app = express();
 const port = process.env.PORT || 4000;
 
+const { __dirname } = fileDirName(import.meta);
+
 // Routes setup
-app.use("/upload/local", routerLocal);
-app.use("/upload/cloudinary", routerCloud);
-app.use("/galeria", views);
+app.use("/", routerLocal);
+app.use("/", routerCloud);
+app.use("/", views);
 
 // static files
 app.use(express.static("public"));
 
-// Configurar el motor de plantillas EJS
-app.set("views", path.join(__dirname, "views")); // Establecer la ubicación de las vistas
-app.set("view engine", "ejs"); // Usar EJS como motor de plantillas
+//configuración del motor de plantillas
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
-// Middlewares
-app.use(cors());
+//Carpeta public para archivos estaticos
+app.use(express.static(path.join(__dirname, "public")));
 
-app.use(morgan("dev"));
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+);
+app.use(morgan("dev"));
 
 // fileupload & default options
 app.use(fileUpload());
@@ -47,22 +56,6 @@ app.use(
   })
 );
 
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
-
-// error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
-});
-
 app.listen(port, async () => {
   try {
     await sequelize.authenticate();
@@ -70,5 +63,5 @@ app.listen(port, async () => {
   } catch (error) {
     console.log("Error al conectar a base de datos", error);
   }
-  console.log(`Servidor escuchando en el puerto ${port}`);
+  console.log(`Servidor en ${process.env.APP_URL}:${port}`);
 });

@@ -1,5 +1,5 @@
 // Importamos las dependencias necesarias
-import { DataTypes, sequelize } from "../../db.js";
+import { sequelize, DataTypes } from "../db.js";
 
 // Definimos el modelo de la imagen en Cloudinary
 const ImageCloud = sequelize.define(

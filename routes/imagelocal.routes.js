@@ -1,10 +1,10 @@
 import express from "express";
 import {
   index,
-  createView,
+  // createView,
   show,
   store,
-  update,
+  // update,
   destroy,
 } from "../controllers/imagelocal.controller.js";
 
