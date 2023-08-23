@@ -2,6 +2,7 @@ project-root/
 ├── src/
 │   ├── controllers/
 │   │   ├── imagelocal.controller.js
+│   │   ├── galeria.controller.js
 │   │   ├── imagecloud.controller.js
 │   ├── models/
 │   │   ├── imagelocal.model.js

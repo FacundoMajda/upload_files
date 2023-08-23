@@ -1,11 +1,12 @@
-require("dotenv").config();
-const cloudinary = require("cloudinary").v2;
-require("../public/js/config");
+import "dotenv/config";
+import { v2 as cloudinary } from "cloudinary";
+
+import "../public/js/config.js";
+
 const apiSecret = cloudinary.config().api_secret;
 
-const signupload = () => {
+export const signupload = () => {
   const timestamp = Math.round(new Date().getTime() / 1000);
-
   const signature = cloudinary.utils.api_sign_request(
     {
       timestamp: timestamp,
@@ -17,7 +18,4 @@ const signupload = () => {
 
   return { timestamp, signature };
 };
-
-module.exports = {
-  signupload,
-};
+export const signature = signupload.signature;

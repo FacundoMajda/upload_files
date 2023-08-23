@@ -1,19 +1,17 @@
 import express from "express";
 import {
   index,
-  // createView,
-  show,
   store,
-  // update,
+  show,
   destroy,
 } from "../controllers/imagelocal.controller.js";
 
 const routerLocal = express.Router();
 // API CRUD
 
-routerLocal.get("/local/api", index);
-routerLocal.get("/local/api/:id/show", show);
-routerLocal.post("/local/api", store);
-routerLocal.delete("/local/api/:id/destroy", destroy);
+routerLocal.get("/local/", index);
+routerLocal.get("/local/:id/show", show);
+routerLocal.post("/local/crear", store);
+routerLocal.delete("/local/:id/destroy", destroy);
 
 export default routerLocal;

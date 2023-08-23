@@ -7,7 +7,8 @@ import fileDirName from "./public/js/dirname.js";
 import express from "express";
 import path from "path";
 import fileUpload from "express-fileupload";
-import cloudinary from "cloudinary";
+import { v2 as cloudinary } from "cloudinary";
+
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
@@ -15,8 +16,8 @@ import ejs from "ejs";
 import { sequelize } from "./db.js";
 
 import routerLocal from "./routes/imagelocal.routes.js";
-import routerCloud from "./routes/imagecloud.routes.js";
-import views from "./routes/galeria.routes.js";
+// import routerCloud from "./routes/imagecloud.routes.js";
+import views from "./routes/index.routes.js";
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -24,8 +25,8 @@ const port = process.env.PORT || 4000;
 const { __dirname } = fileDirName(import.meta);
 
 // Routes setup
-app.use("/", routerLocal);
-app.use("/", routerCloud);
+app.use("/local", routerLocal);
+// app.use("/cloud", routerCloud);
 app.use("/", views);
 
 // static files
@@ -40,10 +41,10 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
+// app.use(cors());
 app.use(
   helmet({
-    contentSecurityPolicy: false,
+    contentSecurityPolicy: true,
   })
 );
 app.use(morgan("dev"));

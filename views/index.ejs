@@ -1,0 +1,124 @@
+<%- include('./partials/header.ejs') ;%>
+
+
+
+<body class="p-5 d-flex flex-column bg-light">
+    <%- include('./partials/nav'); %>
+    <div id="alertBanner" class="alert alert-warning alert-dismissible fade" role="alert">
+        <span id="bannerMessage"></span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>      
+    <div class="container-fluid py-5 px-md-5 col">
+        <header class="d-flex align-items-center justify-content-between">
+            <div class="jumbotron">
+                <h1 class="display-4">Express-fileupload & Cloudinary</h1>
+                
+
+
+
+
+                
+              </div>
+              
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="card text-dark bg-success mb-3">
+                    <div class="card-body">
+                      <h4 class="card-title">Local files</h4>
+                      <p class="card-text">Subida de archivos jpg, png, img de forma local al servidor</p>
+                      <a class="btn btn-light" href="/local/crear">Subir a Local</a>    
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="card text-dark bg-primary mb-3">
+                    <div class="card-body">
+                      <h4 class="card-title">Cloudinary</h4>
+                      <p class="card-text">Subida de archivos haciendo uso de Cloudinary Upload Widget</p>
+                      <button id="upload_widget" name="upload_widget cloudinary-button" class="cloudinary-button btn btn-light">Subir a Cloud</button>
+                    </div>
+                  </div>
+           
+                </div>
+              </div>
+
+        </header>
+        <main class="col h-100 mb-2">
+              
+                <form class="d-flex flex-column mx-auto gap-3" id='uploadForm' encType="multipart/form-data">
+                    <p id="validationErrors"></p>
+                </form>
+    
+
+
+
+
+
+                <div class="container-fluid">
+                    <div class="px-lg-5">
+                     
+                      <div class="row py-5">
+                        <div class="col-lg-12 mx-auto">
+                          <div class="text-lack p-5 shadow-sm rounded banner">
+                            <h1 class="display-4">Galería</h1>
+                            <h3 class="lead">Cloud || Local</>
+                            <hr class="my-4">
+                    
+
+                            
+                      <h3>IMAGENES ALOJADAS DE FORMA LOCAL</h3>
+                      <!-- Gallery  -->
+                        <div class="row">
+                        <section class="row" id="galeriaLocal">                
+                            
+                        </section>
+                        </div>
+                        <h3>IMAGENES ALOJADAS EN CLOUDINARY</h3>
+                         <!-- Gallery  -->
+  
+  
+                        <div class="row">
+                        <section class="row mt-5" id="galeriaCloud">                
+                            
+                        </section>
+                      </div>
+        
+                          </div>
+                        </div>
+                        
+                      </div>
+
+
+
+      
+               </div>
+
+
+
+
+
+
+            
+               
+
+
+
+        </main>
+    </div>
+    <%- include('./partials/footer'); %>
+    
+  
+
+   <!-- cloudinary upload widget -->
+   <script 
+   src="https://widget.cloudinary.com/v2.0/global/all.js" 
+   type="text/javascript">
+  </script>
+  <!-- local upload instantiation -->
+  <!-- <script src="/js/upload-client.js" type="text/javascript"></script> -->
+  <script src="/js/index.js" type="text/javascript"></script>
+  
+</body>
+
+</html>

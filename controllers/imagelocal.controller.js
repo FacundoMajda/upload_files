@@ -87,7 +87,11 @@ const destroy = async (req, res) => {
       return res.status(404).send("La imagen no fue encontrada.");
     }
 
-    const imagePath = path.join(__dirname, "../files/", `${image.original_filename}`);
+    const imagePath = path.join(
+      __dirname,
+      "../files/",
+      `${image.original_filename}`
+    );
     unlink(imagePath, function (error) {
       if (error && error.code === "ENOENT") {
         return res

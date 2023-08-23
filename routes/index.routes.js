@@ -1,11 +1,10 @@
+import "dotenv/config";
 import { Router } from "express";
 
-import { indexView, createView } from "../controllers/galeria.controllers.js";
+import { indexView } from "../controllers/index.controller.js";
 
 const views = Router();
-
 //Vistas
 views.get("/", indexView);
-views.get("/create", createView);
 
 export default views;
