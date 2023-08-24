@@ -1,7 +1,4 @@
 <%- include('./partials/header.ejs') ;%>
-
-
-
 <body class="p-5 d-flex flex-column bg-light">
     <%- include('./partials/nav'); %>
     <div id="alertBanner" class="alert alert-warning alert-dismissible fade" role="alert">
@@ -26,8 +23,13 @@
                     <div class="card-body">
                       <h4 class="card-title">Local files</h4>
                       <p class="card-text">Subida de archivos jpg, png, img de forma local al servidor</p>
-                      <a class="btn btn-light" href="/local/crear">Subir a Local</a>    
+                      <form id="formUploadLocal">
+                        <input class="my-2" type="file" name="imageLocal" id="imageLocal">
+                        <input class="btn btn-light" type="submit" value="Subir a Local" >
+                        <span id="validationError"></span> 
+                      </form>
                     </div>
+
                   </div>
                 </div>
 

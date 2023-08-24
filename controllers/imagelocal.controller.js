@@ -42,6 +42,7 @@ const show = async (req, res) => {
 };
 
 const store = async (req, res) => {
+  console.log(req.files);
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.status(400).json({ mensaje: "No hay archivos que subir." });
   }

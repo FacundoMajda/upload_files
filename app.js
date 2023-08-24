@@ -25,7 +25,7 @@ const port = process.env.PORT || 4000;
 const { __dirname } = fileDirName(import.meta);
 
 // Routes setup
-app.use("/local", routerLocal);
+app.use("/", routerLocal);
 // app.use("/cloud", routerCloud);
 app.use("/", views);
 

@@ -2,6 +2,7 @@ const imagesLocal = document.querySelector("#galeriaLocal");
 const imagesCloud = document.querySelector("#galeriaCloud");
 const alertBanner = document.querySelector("#alertBanner");
 const bannerMessage = document.querySelector("#bannerMessage");
+const formUploadLocal = document.querySelector("#formUploadLocal");
 
 // import { v2 as cloudinary } from "cloudinary";
 const cloudName = "djtwvtbof";
@@ -99,3 +100,28 @@ document.getElementById("upload_widget").addEventListener(
 //     alertBanner.classList.add("show");
 //   }
 // };
+
+formUploadLocal.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const image = document.querySelector("#imageLocal");
+
+  if (image.files.length == 0) {
+    console.log("noimage");
+    bannerMessage.innerText = "No tenes imagenes para subir.";
+    alertBanner.classList.remove("fade");
+    return;
+  } else {
+    bannerMessage.innerText = "";
+    alertBanner.classList.add("fade");
+  }
+  const fd = new FormData();
+  fd.append("image", image.files);
+  const response = await fetch("/local/crear", {
+    method: "POST",
+    body: fd,
+  });
+
+  const data = await response.json();
+  console.log(data);
+});
